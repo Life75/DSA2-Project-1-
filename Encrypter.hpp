@@ -11,7 +11,10 @@ class Encrypter
     std::string password;
 
     public:
+    Encrypter();
     Encrypter(std::string userID); //generate the password when taking in the userID
+    void generatePassword();
     std::string getUserID();
+    std::string getPassword();
 };
 #endif

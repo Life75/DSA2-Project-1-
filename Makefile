@@ -2,7 +2,7 @@ CXX = g++
 CXXFLAGS = -g -std=c++11 -Wall -ftest-coverage -fprofile-arcs
 
 SRCS = $(wildcard *.hpp)
-OBJECTS = Encrypter.o $(SRCS:%.hpp=%.o) 
+OBJECTS = Encrypter.o fileMakerAndReader.o $(SRCS:%.hpp=%.o) 
 
 main: $(OBJECTS) main.o
 	$(CXX) $(CXXFLAGS) -o $@ $^
