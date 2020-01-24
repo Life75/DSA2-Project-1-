@@ -16,7 +16,7 @@ TEST_CASE("class Encrypter")
     Encrypter ae("Washington");
     REQUIRE(ae.getUserID() == "Washington");
     ae.generatePassword();
-    std::cout << ae.getPassword() << "\n";
+    //std::cout << ae.getPassword() << "\n";
 }
 
 TEST_CASE("class fileMakerAndReader")
@@ -35,27 +35,40 @@ TEST_CASE("class fileMakerAndReader")
     REQUIRE(userOne->getUserID() != userTwo->getUserID());
     REQUIRE(userOne->getPassword() != userTwo->getPassword());
     */
-    std::string passwordOne = "";
-    std::string passwordTwo = "";
+
+   //Create an object called randomPasswordGenerator dedicated to generating random for the objects 
+    std::string passwordOne = "password";
+    std::string passwordTwo = "password";
+    std::string passwordThree = "";
     int i = 0;
     while(i < 2)
     {
         example = raw.rawTextMaker();
-        
+        //example->generatePassword();
+
         if(i == 0)
         {
             REQUIRE("SMITH" == example->getUserID());
             passwordOne = example->getPassword();
         }
-        example->generatePassword();
+       
        
         if(i == 1)
         {
             REQUIRE("JOHNSON" == example->getUserID()); 
             passwordTwo = example->getPassword();
         }
+        
+
+        if(i == 2)
+        {
+            passwordThree = example->getPassword();
+        }
         i++;
     }
+    std::cout << passwordOne << "One \n";
+    std::cout << passwordTwo << "Two \n";
+    std::cout << passwordThree<< "Three \n";
     REQUIRE(passwordOne != passwordTwo);
     
 }
