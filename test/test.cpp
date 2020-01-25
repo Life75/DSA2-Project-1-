@@ -15,8 +15,21 @@ TEST_CASE("class Encrypter")
     //std::string name = "Washington";
     Encrypter ae("Washington");
     REQUIRE(ae.getUserID() == "Washington");
-    ae.generatePassword();
+    Encrypter ea("Washingtog");
+    REQUIRE(ae.getPassword() != ea.getPassword());
     //std::cout << ae.getPassword() << "\n";
+
+    //Encryption test 
+    Encrypter test;
+    test.setUserID("Cena");
+    test.setPassword("raaaa");
+    test.encryptPassword();
+    REQUIRE(test.getPassword() == "aones");
+    
+    test.setPassword("zzzzz");
+    test.encryptPassword();
+    REQUIRE(test.getPassword() == "inmdr");
+
 }
 
 TEST_CASE("class fileMakerAndReader")
@@ -37,13 +50,16 @@ TEST_CASE("class fileMakerAndReader")
     */
 
    //Create an object called randomPasswordGenerator dedicated to generating random for the objects 
-    std::string passwordOne = "password";
-    std::string passwordTwo = "password";
-    std::string passwordThree = "";
+    //std::string passwordOne = "password";
+   //std::string passwordTwo = "password";
+    
+    /*Passed testing need to get rid of it so it can properly 
+    place all the data in file*/
+    /*
     int i = 0;
     while(i < 2)
     {
-        example = raw.rawTextMaker();
+        example = raw.objectMaker();
         //example->generatePassword();
 
         if(i == 0)
@@ -58,17 +74,14 @@ TEST_CASE("class fileMakerAndReader")
             REQUIRE("JOHNSON" == example->getUserID()); 
             passwordTwo = example->getPassword();
         }
-        
-
-        if(i == 2)
-        {
-            passwordThree = example->getPassword();
-        }
         i++;
     }
-    std::cout << passwordOne << "One \n";
-    std::cout << passwordTwo << "Two \n";
-    std::cout << passwordThree<< "Three \n";
-    REQUIRE(passwordOne != passwordTwo);
-    
+    REQUIRE(passwordOne != passwordTwo); 
+    */
+
+    //creates raw.txt
+    raw.rawTextMaker();
+
+    //creates encrypted.txt
+    raw.encryptedTextMaker();
 }

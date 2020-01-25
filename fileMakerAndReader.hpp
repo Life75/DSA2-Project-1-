@@ -15,7 +15,9 @@ class fileMakerAndReader
     public:
     fileMakerAndReader();
     //change to Node data type so it can make objects and place them inside the hash 
-    Encrypter* rawTextMaker();
+    Encrypter* objectMaker();
+    void rawTextMaker();
+    void encryptedTextMaker();
     
     
 };

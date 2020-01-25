@@ -5,7 +5,7 @@ fileMakerAndReader::fileMakerAndReader()
 
 }
 
-Encrypter* fileMakerAndReader::rawTextMaker()
+Encrypter* fileMakerAndReader::objectMaker()
 {
     //first read in lastnamees and create the objects of Encry
     std::string fileName = "lastNames.txt";
@@ -43,4 +43,41 @@ Encrypter* fileMakerAndReader::rawTextMaker()
     Encrypter* encrypt = new Encrypter(lastName);
     return encrypt;
     //delete encrypt;
+}
+
+void fileMakerAndReader::rawTextMaker()
+{
+    //creates file 
+    std::fstream file;
+    std::ofstream fout;
+    Encrypter* encrypt;
+    fout.open("raw.txt",std::ios::out);
+
+    int i=0;
+    while(i < 88799)
+    {
+        encrypt = objectMaker();
+        fout << encrypt->getUserID() << "\n" << encrypt->getPassword() << "\n";
+        i++;
+    }
+    fout.close();
+}
+
+void fileMakerAndReader::encryptedTextMaker()
+{
+    //creates file
+    std::fstream file;
+    std::ofstream fout;
+    Encrypter* encrypt;
+    fout.open("encrypted.txt", std::ios::out);
+    int i =0;
+    
+    while(i < 88799)
+    {
+        encrypt = objectMaker();
+        encrypt->encryptPassword();
+        fout << encrypt->getUserID() << "\n" << encrypt->getPassword() << "\n";
+        i++;
+    }
+    fout.close();
 }
