@@ -22,15 +22,15 @@ Encrypter::Encrypter(std::string userID)
     int userIDLength = 0;
     userIDLength = userID.size();
 
-    int sum =0;
+   
     while(j < userIDLength)
     {
         char c;
         c = userID.at(j);
-        sum += int(c);
+        sumOfUserID += int(c);
         j++;
     }
-    srand(sum); // makes random numbers for every run
+    srand(sumOfUserID); // makes random numbers for every run
     while(i < 9)
     {
        //random num generator  
@@ -59,6 +59,7 @@ void Encrypter::generatePassword()
     }
 }
 
+
 void Encrypter::setPassword(std::string password)
 {
     this->password = password;
@@ -79,6 +80,10 @@ std::string Encrypter::getPassword()
     return password;
 }
 
+int Encrypter::getSumOfUserID()
+{
+    return sumOfUserID;
+}
 void Encrypter::encryptPassword()
 {
     std::string encryption ="";

@@ -11,6 +11,7 @@ class Encrypter
     std::string userID;
     std::string password;
     std::string savedPassword;
+    int sumOfUserID =0;
 
     public:
     Encrypter();
@@ -21,5 +22,6 @@ class Encrypter
     std::string getUserID();
     std::string getPassword();
     void encryptPassword();
+    int getSumOfUserID();
 };
 #endif

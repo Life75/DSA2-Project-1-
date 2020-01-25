@@ -75,3 +75,54 @@ void fileMakerAndReader::textMaker()
     fout.close();
     file.close();
 }
+
+Encrypter* fileMakerAndReader::encryptionReader()
+{
+    std::ifstream fileZ;
+    std::string fileNameZ = "encrypted.txt";
+    std::string userID;
+    std::string password;
+    std::string contents;
+    std::string str;
+    std::string info;
+
+    if(!fileZ.is_open())
+    {
+        fileZ.open(fileNameZ.c_str());
+        //std::cout << "opened";
+    }
+
+    if(fileZ.eof())
+    {
+        std::cout << "eof";
+        fileZ.close();
+    }
+//This parses for a single line in the file, main will be holding a loop for all 8800 names 
+    for(int i=0; i < 1; i++)
+    {
+        std::getline(fileZ, str);
+        contents = str;
+        
+        if(i == 0)
+        {
+            info = contents;
+            std::istringstream ss(info);
+            ss >> userID;
+            //std::cout << userID << "\n";
+        }
+
+        if(i == 1)
+        {
+            info = contents;
+            std::istringstream ss(info);
+            ss >> password;
+        }
+
+    }
+
+    Encrypter* encrypt = new Encrypter();
+    encrypt->setUserID(userID);
+    encrypt->setPassword(password);
+    return encrypt;
+    //delete encrypt;
+}

@@ -6,6 +6,7 @@
 #include <sstream>
 #include <fstream>
 #include <string>
+#include <limits>
 
 class fileMakerAndReader
 {
@@ -18,6 +19,7 @@ class fileMakerAndReader
     //change to Node data type so it can make objects and place them inside the hash 
     Encrypter* objectMaker();
     void textMaker();
+    Encrypter* encryptionReader();
     
     
     

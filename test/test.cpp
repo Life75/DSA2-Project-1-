@@ -37,7 +37,7 @@ TEST_CASE("class fileMakerAndReader")
     fileMakerAndReader raw;
    // Encrypter* userOne;
    // Encrypter* userTwo;
-    Encrypter* example;
+    Encrypter* example = new Encrypter();
     /*
     //reads the lastnames.txt and creates a file with the userIDs and passwords
     userOne = raw.rawTextMaker();
@@ -65,23 +65,54 @@ TEST_CASE("class fileMakerAndReader")
         if(i == 0)
         {
             REQUIRE("SMITH" == example->getUserID());
-            passwordOne = example->getPassword();
+          //  passwordOne = example->getPassword();
         }
        
        
         if(i == 1)
         {
             REQUIRE("JOHNSON" == example->getUserID()); 
-            passwordTwo = example->getPassword();
+            //passwordTwo = example->getPassword();
         }
         i++;
     }
-    REQUIRE(passwordOne != passwordTwo); 
+   ///REQUIRE(passwordOne != passwordTwo); 
     */
 
     //creates raw.txt and creates encrypted.txt
     raw.textMaker();
+/*    
+    example = raw.encryptionReader();
+    REQUIRE(example->getUserID() == "SMITH");
     
+    int i =0;
+    while(i < 2)
+    {
+        example = raw.encryptionReader(); 
+        std::cout << example->getUserID();
+        i++;
+    }
+    /*
+    int i = 0;
+    while(i < 2)
+    {
+        example = raw.encryptionReader();
+        if(i == 0)
+        {
+            REQUIRE("SMITH" == example->getUserID());
+           // passwordOne = example->getPassword();
+        }
+       
+       
+        if(i == 1)
+        {
+            REQUIRE("JOHNSON" == example->getUserID()); 
+            //passwordTwo = example->getPassword();
+        }
+        i++;
+    }*/
+
+    //REQUIRE(example->getPassword == )
 }
 
 TEST_CASE("class Node")
