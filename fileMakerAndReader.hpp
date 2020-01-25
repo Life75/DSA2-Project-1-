@@ -11,13 +11,14 @@ class fileMakerAndReader
 {
     private:
     std::ifstream file;
+    std::string fileName = "lastNames.txt";
 
     public:
     fileMakerAndReader();
     //change to Node data type so it can make objects and place them inside the hash 
     Encrypter* objectMaker();
-    void rawTextMaker();
-    void encryptedTextMaker();
+    void textMaker();
+    
     
     
 };

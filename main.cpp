@@ -2,14 +2,19 @@
 #include <sstream>
 #include <string>
 #include "Encrypter.hpp"
+#include "Stack.hpp"
+#include "fileMakerAndReader.hpp"
+#include "Node.hpp"
 
 int main()
 {
-    /*
-    Encrypter* ae = nullptr;
-    ae = new Encrypter[8800];
-    for(int i =0; i<8800; i++)
+    Stack** hashTable;
+    hashTable = new Stack*[90000];
+
+    for(int i=0; i < 90000; i++)
     {
-        ae[i] = 
-    }*/
+        hashTable[i] = nullptr;
+    }
+
+
 }

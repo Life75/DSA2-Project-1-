@@ -5,8 +5,8 @@
 #include "catch/catch.hpp"
 #include "../Encrypter.hpp"
 #include "../fileMakerAndReader.hpp"
-//#include "../Node.hpp"
-//#include "../Stack.hpp"
+#include "../Node.hpp"
+#include "../Stack.hpp"
 //#include "../HashStorage.hpp"
 
 TEST_CASE("class Encrypter")
@@ -79,9 +79,63 @@ TEST_CASE("class fileMakerAndReader")
     REQUIRE(passwordOne != passwordTwo); 
     */
 
-    //creates raw.txt
-    raw.rawTextMaker();
+    //creates raw.txt and creates encrypted.txt
+    raw.textMaker();
+    
+}
 
-    //creates encrypted.txt
-    raw.encryptedTextMaker();
+TEST_CASE("class Node")
+{
+    Encrypter* ex = new Encrypter();
+    ex->setUserID("Washington");
+    ex->setPassword("abcd");
+    Node n(ex);
+    REQUIRE(n.getValue()->getUserID() == "Washington");
+    REQUIRE(n.getValue()->getPassword() == "abcd");
+    REQUIRE(n.getNext() == nullptr);
+}
+
+TEST_CASE("class Stack")
+{
+    Stack s;
+    Encrypter* ex = new Encrypter();
+    Encrypter* xe = new Encrypter();
+    Encrypter* dummy;
+    Encrypter* dummy2;
+    ex->setUserID("Washington");
+    ex->setPassword("abcd");
+    xe->setUserID("Austyn");
+    xe->setPassword("password");
+  
+    s.push(ex);
+    s.push(xe);
+
+    
+    REQUIRE(!s.isEmpty());
+
+    //traversal
+    dummy2 = s.search("Austyn", "password");
+    REQUIRE(dummy2 != nullptr);
+    
+    dummy2 = s.search("Washington", "password");
+    REQUIRE(dummy2 == nullptr);
+
+    dummy2 = s.search("Washington", "abcd");
+    REQUIRE(dummy2 != nullptr);
+
+    dummy2 = s.search("nothing", "nothing");
+    REQUIRE(dummy2 == nullptr);
+
+    //pop 
+    dummy = s.pop();
+    REQUIRE(dummy->getUserID() == "Austyn");
+    REQUIRE(dummy->getPassword() == "password");
+
+    dummy = s.pop();
+    REQUIRE(dummy->getUserID() == "Washington");
+    REQUIRE(dummy->getPassword() == "abcd");
+
+
+    
+    REQUIRE(s.isEmpty());
 }
