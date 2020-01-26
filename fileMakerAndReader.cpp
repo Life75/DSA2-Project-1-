@@ -22,7 +22,7 @@ Encrypter* fileMakerAndReader::objectMaker()
 
     if(file.eof())
     {
-        std::cout << "eof";
+        //std::cout << "eof";
         file.close();
     }
 //This parses for a single line in the file, main will be holding a loop for all 8800 names 
