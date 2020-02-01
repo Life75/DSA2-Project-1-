@@ -35,6 +35,7 @@ TEST_CASE("class Encrypter")
 TEST_CASE("class fileMakerAndReader")
 {
     fileMakerAndReader raw;
+    fileMakerAndReader encryptReader;
    // Encrypter* userOne;
    // Encrypter* userTwo;
     Encrypter* example = new Encrypter();
@@ -59,7 +60,7 @@ TEST_CASE("class fileMakerAndReader")
     int i = 0;
     while(i < 2)
     {
-        example = raw.objectMaker();
+        example = raw.objectMaker("lastNames.txt");
         //example->generatePassword();
 
         if(i == 0)
@@ -80,19 +81,24 @@ TEST_CASE("class fileMakerAndReader")
     */
 
     //creates raw.txt and creates encrypted.txt
-    raw.textMaker();
-/*    
-    example = raw.encryptionReader();
+    //raw.textMaker();
+    raw.objectMaker2("lastNames.txt");
+    
+  // raw.textMaker();
+/*
+    encryptReader.encryptionReader();
+   
+    example = encryptReader.objectMaker("raw.txt");
     REQUIRE(example->getUserID() == "SMITH");
     
-    int i =0;
-    while(i < 2)
+    int k =0;
+    while(k < 2)
     {
-        example = raw.encryptionReader(); 
-        std::cout << example->getUserID();
-        i++;
+        example = encryptReader.encryptionReader(); 
+        std::cout << example->getUserID() << std::endl;
+        k++;
     }
-    /*
+/*
     int i = 0;
     while(i < 2)
     {

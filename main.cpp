@@ -5,7 +5,10 @@
 #include "Stack.hpp"
 #include "fileMakerAndReader.hpp"
 #include "Node.hpp"
+/*
+    Banner: Austyn Washington 1/28/2020
 
+*/
 int main()
 {
     std::ifstream file;
@@ -29,7 +32,7 @@ int main()
     {
         
       
-        encrypt = creator.objectMaker();
+        encrypt = creator.objectMaker("encrypted.txt");
         encrypt->encryptPassword();
         //std::cout << "reached\n";
             
@@ -50,11 +53,6 @@ int main()
             placed++;
             collisions++;
         }
-        //std::cout << creator.objectMaker()->getUserID();
-        //std::cout << creator.objectMaker()->getUserID() << "\n";
-        //creator.objectMaker()->encryptPassword();
-        //std::cout << creator.objectMaker()->getUserID();
-        //std::cout << creator.objectMaker()->getPassword() << "\n";
         i++;
     }
 
@@ -69,7 +67,7 @@ int main()
         j++;
     }
     std::cout << "hashes placed: " << placed << "\n";
-    std::cout << "collisions: " << collisions << "\n";
+    //std::cout << "collisions: " << collisions << "\n";
 
     std::string userID = "default";
     std::string password ="";

@@ -5,10 +5,10 @@ fileMakerAndReader::fileMakerAndReader()
    
 }
 
-Encrypter* fileMakerAndReader::objectMaker()
+Encrypter* fileMakerAndReader::objectMaker(std::string filename)
 {
     //first read in lastnamees and create the objects of Encry
-    
+    filename = fileName; 
     std::string lastName;
     std::string contents;
     std::string str;
@@ -65,12 +65,19 @@ void fileMakerAndReader::textMaker()
     int i=0;
     while(i < 88799)
     {
-        encrypt = objectMaker();
+        encrypt = objectMaker("lastnames.txt");
         fout << encrypt->getUserID() << "\n" << encrypt->getPassword() << "\n";
 
         encrypt->encryptPassword();
         foutEncrypt << encrypt->getUserID() << "\n" << encrypt->getPassword() << "\n";
         i++;
+    }
+
+    while(i < 88799)
+    {
+        encrypt = objectMaker("raw.txt");
+        encrypt->encryptPassword();
+        foutEncrypt << encrypt->getUserID() << "\n" << encrypt->getPassword() << "\n";
     }
     fout.close();
     file.close();
@@ -125,4 +132,47 @@ Encrypter* fileMakerAndReader::encryptionReader()
     encrypt->setPassword(password);
     return encrypt;
     //delete encrypt;
+}
+
+Encrypter* fileMakerAndReader::objectMaker2(std::string filename)
+{
+    filename = "lastNames.txt";
+    std::fstream file;
+    std::string userID;
+    int i = 1;
+    file.open(filename.c_str());
+
+    while (file >> userID)
+    {
+          if(i == 1 )
+        {
+            std::cout << userID << std::endl;
+        }
+
+        if(i == 2)
+        {
+           // std::cout << userID << "2nd\n";
+        }
+
+         if(i == 3)
+        {
+            //std::cout << userID << "3rd\n";
+        }
+
+        if(i == 4)
+        {
+          //  std::cout << userID << "4th\n";
+            i=0;
+        }
+
+        /* if(i == 3)
+        {
+            std::cout << "3rd \n";
+            i = 0;
+        } */
+
+      
+        i++;
+    }
+
 }

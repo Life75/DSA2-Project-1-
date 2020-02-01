@@ -17,7 +17,8 @@ class fileMakerAndReader
     public:
     fileMakerAndReader();
     //change to Node data type so it can make objects and place them inside the hash 
-    Encrypter* objectMaker();
+    Encrypter* objectMaker(std::string fileName);
+    Encrypter* objectMaker2(std::string filename);
     void textMaker();
     Encrypter* encryptionReader();
     
