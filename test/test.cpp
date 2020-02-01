@@ -82,7 +82,15 @@ TEST_CASE("class fileMakerAndReader")
 
     //creates raw.txt and creates encrypted.txt
     //raw.textMaker();
-    raw.objectMaker2("lastNames.txt");
+    Encrypter* enArray[88799];
+    //enArray = new Encrypter[88799];
+    for(int i=0; i < 88799; i++)
+    {
+        enArray[i] = new Encrypter();
+    }
+    raw.objectMaker2("lastNames.txt", enArray);
+
+    REQUIRE(enArray[0]->getUserID() == "SMITH");
     
   // raw.textMaker();
 /*

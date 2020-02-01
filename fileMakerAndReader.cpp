@@ -134,19 +134,31 @@ Encrypter* fileMakerAndReader::encryptionReader()
     //delete encrypt;
 }
 
-Encrypter* fileMakerAndReader::objectMaker2(std::string filename)
+//Try to make this with recursion next time instead of having a dedicated stack
+Stack* fileMakerAndReader::objectMaker2(std::string filename,  Encrypter* (&enArray)[88799])
 {
     filename = "lastNames.txt";
     std::fstream file;
     std::string userID;
+    Stack* stack = new Stack();
+
     int i = 1;
+    int j = 0;
     file.open(filename.c_str());
 
+    
     while (file >> userID)
     {
           if(i == 1 )
         {
-            std::cout << userID << std::endl;
+            //std::cout << userID << std::endl;
+
+            Encrypter* object = new Encrypter(userID);
+           
+            std::cout << object->getUserID() << "\n";
+            stack->push(object);
+            enArray[j] = object;
+            j++;
         }
 
         if(i == 2)
@@ -171,8 +183,10 @@ Encrypter* fileMakerAndReader::objectMaker2(std::string filename)
             i = 0;
         } */
 
-      
+       
         i++;
+        
     }
+    return stack;
 
 }
