@@ -12,7 +12,7 @@
 class fileMakerAndReader
 {
     private:
-    std::ifstream file;
+    //std::ifstream file;
     std::string fileName = "lastNames.txt";
     int variable = 1;
 
@@ -22,6 +22,7 @@ class fileMakerAndReader
     Encrypter* objectMaker(std::string fileName);
     Stack* objectMaker2(std::string filename, Encrypter* (&enArray)[88799]);
     void textMaker();
+    void textMaker2(std::string rawFileName, std::string encryptFileName,Encrypter* (&enArray)[88799]);
     Encrypter* encryptionReader();
     
     

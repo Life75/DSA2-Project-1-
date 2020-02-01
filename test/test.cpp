@@ -89,8 +89,24 @@ TEST_CASE("class fileMakerAndReader")
         enArray[i] = new Encrypter();
     }
     raw.objectMaker2("lastNames.txt", enArray);
+    //pass by reference an array
 
     REQUIRE(enArray[0]->getUserID() == "SMITH");
+    REQUIRE(enArray[1]->getUserID() == "JOHNSON");
+
+    raw.objectMaker2("raw.txt", enArray);
+
+
+
+    /*This has a weird error if I function call within it to objectMaker2
+    it won't read the file completely. README*/
+    // raw.textMaker2("raw.txt", "encrypted.txt", enArray);
+    
+
+    
+    //REQUIRE(enArray[0]->getUserID() == "SMITH");
+    //REQUIRE(enArray[1]->getUserID() == "JOHNSON");
+
     
   // raw.textMaker();
 /*
