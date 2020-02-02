@@ -187,7 +187,7 @@ Stack* fileMakerAndReader::objectMaker2(std::string filename,  Encrypter* (&enAr
             } */
             i++;
         }
-         std::cout << j << std::endl;
+       //  std::cout << j << std::endl;
         //file.close();
     }
     
@@ -197,19 +197,23 @@ Stack* fileMakerAndReader::objectMaker2(std::string filename,  Encrypter* (&enAr
         while (file >> userID >> password)
         {
                 
-               // object = new Encrypter(userID);
-               // object->setPassword(password);
+                object = new Encrypter(userID);
+                object->setPassword(password);
 
-               std::cout << userID << std::endl;
-                std::cout << password << std::endl;
+              // std::cout << userID << std::endl;
+               // std::cout << password << std::endl;
             
                 //std::cout << object->getUserID() << "\n";
                 //std::cout << password << std::endl;
                 //stack->push(object);
-               // enArray[j] = object;
+                enArray[j] = object;
                 j++;
         }
-    std::cout << j << std::endl;
+    if(filename == "encrypted.txt")
+    {
+          //  std::cout << j << std::endl;
+
+    }
 
            // file >>userID << password;
         
@@ -220,23 +224,38 @@ Stack* fileMakerAndReader::objectMaker2(std::string filename,  Encrypter* (&enAr
     return stack;
 }
 
-void fileMakerAndReader::textMaker2(std::string rawFileName, std::string encryptFileName,Encrypter* (&enArray)[88799])
+void fileMakerAndReader::textMaker2(std::string filename,Encrypter* (&enArray)[88799])
 {
     std::fstream file;
     std::ofstream fout;
 
-    fout.open("raw.txt",std::ios::out);
+    fout.open(filename,std::ios::out);
     //foutEncrypt.open("encrypted.txt",std::ios::out);
 
-    int i=0;
-    while(i < 88799)
+    if(filename == "raw.txt")
     {
+        int i=0;
+        while(i < 88799)
+        {
         
-        fout << enArray[i]->getUserID() << " " << enArray[i]->getPassword() << "\n";
-        i++;
+            fout << enArray[i]->getUserID() << " " << enArray[i]->getPassword() << "\n";
+            i++;
+        }
     }
 
-    objectMaker2("raw.txt", enArray);
+    if(filename == "encrypted.txt")
+    {
+        int i=0;
+        while(i < 88799)
+        {
+            enArray[i]->encryptPassword();
+            fout << enArray[i]->getUserID() << " " << enArray[i]->getPassword() << "\n";
+            i++;
+        }
+    }
+    
+
+    
     //std::cout << enArray[1]->getUserID() << std::endl;
     fout.close();
 }

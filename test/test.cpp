@@ -29,16 +29,16 @@ TEST_CASE("class Encrypter")
     test.setPassword("zzzzz");
     test.encryptPassword();
     REQUIRE(test.getPassword() == "inmdr");
-
+    
 }
 
 TEST_CASE("class fileMakerAndReader")
 {
     fileMakerAndReader raw;
-    fileMakerAndReader encryptReader;
+    //fileMakerAndReader encryptReader;
    // Encrypter* userOne;
    // Encrypter* userTwo;
-    Encrypter* example = new Encrypter();
+   // Encrypter* example = new Encrypter();
     /*
     //reads the lastnames.txt and creates a file with the userIDs and passwords
     userOne = raw.rawTextMaker();
@@ -94,16 +94,18 @@ TEST_CASE("class fileMakerAndReader")
     REQUIRE(enArray[0]->getUserID() == "SMITH");
     REQUIRE(enArray[1]->getUserID() == "JOHNSON");
 
+
+    raw.textMaker2("raw.txt", enArray);
     raw.objectMaker2("raw.txt", enArray);
-
-
+    raw.textMaker2("encrypted.txt", enArray);
+    raw.objectMaker2("encrypted.txt", enArray);
 
     /*This has a weird error if I function call within it to objectMaker2
     it won't read the file completely. README*/
     // raw.textMaker2("raw.txt", "encrypted.txt", enArray);
     
 
-    
+
     //REQUIRE(enArray[0]->getUserID() == "SMITH");
     //REQUIRE(enArray[1]->getUserID() == "JOHNSON");
 
@@ -199,4 +201,8 @@ TEST_CASE("class Stack")
 
     
     REQUIRE(s.isEmpty());
+   // delete ex;
+   // delete xe;
+   // delete dummy;
+   // delete dummy2;
 }

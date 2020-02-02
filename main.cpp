@@ -13,43 +13,62 @@ int main()
 {
     std::ifstream file;
     fileMakerAndReader creator;
-    creator.textMaker();
-    Encrypter* encrypt;
+    Encrypter* ae;
+    int amountOfObjects = 88799;
+    int size = 90000;
+
+    Encrypter* enArray[88799];
+    //enArray = new Encrypter[88799];
+    for(int i=0; i < 88799; i++)
+    {
+        enArray[i] = new Encrypter();
+    }
+
+    creator.objectMaker2("lastNames.txt", enArray);
+    creator.objectMaker2("raw.txt", enArray);
+    creator.textMaker2("encrypted.txt", enArray);
+    creator.objectMaker2("encrypted.txt", enArray);
+    
+    
     int collisions = 0;
     int placed =0;
 
+  
     Stack** hashTable;
-    hashTable = new Stack*[90000];
+    hashTable = new Stack*[size];
 
-    for(int i=0; i < 90000; i++)
+    for(int i=0; i < size; i++)
     {
         hashTable[i] = nullptr;
     }
 
     //placing hash stuff
     int i =0;
-    while(i < 88799)
+    while(i < amountOfObjects)
     {
         
-      
-        encrypt = creator.objectMaker("encrypted.txt");
-        encrypt->encryptPassword();
+        
+        
+        //encrypt->encryptPassword();
         //std::cout << "reached\n";
             
         
-        int hashKey = encrypt->getSumOfUserID() % 90000;
+        int hashKey = enArray[i]->getSumOfUserID() % 90000;
+        //std::cout << enArray[i]->getUserID() << std::endl;
         
         if(hashTable[hashKey] == nullptr)
         {
             hashTable[hashKey] = new Stack;
-            hashTable[hashKey]->push(encrypt);
-            //std::cout << hashKey << "\n";
+            hashTable[hashKey]->push(enArray[i]);
+            
+
+           // std::cout << hashKey << "\n";
             placed++;
         }
 
         else
         {
-            hashTable[hashKey]->push(encrypt);
+            hashTable[hashKey]->push(enArray[i]);
             placed++;
             collisions++;
         }
@@ -66,9 +85,70 @@ int main()
         }
         j++;
     }
-    std::cout << "hashes placed: " << placed << "\n";
+    //std::cout << "hashes placed: " << placed << "\n";
     //std::cout << "collisions: " << collisions << "\n";
 
+/*
+    int amount = 0;
+    //Testing placements 
+    j =0;
+    while(j < size)
+    {
+        if(hashTable[j] != nullptr)
+        {
+            amount++;
+            std::cout << j << "\n"; 
+        }
+        j++;
+    }
+  */
+    std::cout << "Checking Placements in file..." << std::endl;
+    creator.objectMaker2("raw.txt", enArray);
+    j=0;
+    while(j < 5)
+    {
+       
+        std::string userID = enArray[j]->getUserID();
+        
+        std::string password = enArray[j]->getPassword();
+        Encrypter* example = new Encrypter(userID); 
+        example->setPassword(password);
+        example->encryptPassword();
+        password = example->getPassword();
+        int hashKey = 0;
+         hashKey = enArray[j]->getSumOfUserID() % 90000;
+
+        if(hashTable[hashKey] != nullptr)
+        {
+            std::cout << userID << password << "\n";
+            example = hashTable[hashKey]->search(userID,password);
+            //std::cout << example->getUserID();
+           /* 
+            while(!hashTable[hashKey]->isEmpty())
+            {
+                example = hashTable[hashKey]->pop();
+              //  if(example ==)
+            }*/
+         
+        }
+        else
+        {
+            std::cout << "Not Found\n";
+        }
+
+        if(example != nullptr) std::cout << "found";
+      
+        j++;
+    }
+
+
+
+
+
+
+
+
+/*
     std::string userID = "default";
     std::string password ="";
    
@@ -212,7 +292,7 @@ int main()
             std::cout << "Found!\n";
         }
         
-    }
+    }*/
     
 }
 
