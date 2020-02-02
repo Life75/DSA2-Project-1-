@@ -53,7 +53,7 @@ int main()
         //std::cout << "reached\n";
             
         
-        int hashKey = enArray[i]->getSumOfUserID() % 90000;
+        int hashKey = enArray[i]->getSumOfUserID() % size;
         //std::cout << enArray[i]->getUserID() << std::endl;
         
         if(hashTable[hashKey] == nullptr)
@@ -102,26 +102,30 @@ int main()
         j++;
     }
   */
-    std::cout << "Checking Placements in file..." << std::endl;
+    std::cout << "Legal:" << std::endl;
+    std::cout << "Userid    Password    Result" << std::endl;
     creator.objectMaker2("raw.txt", enArray);
+    std::string userID = "";
+    std::string password ="";
+    std::string encrypted ="";
+    int testing = 5;
     j=0;
-    while(j < 5)
+    while(j < testing)
     {
        
-        std::string userID = enArray[j]->getUserID();
-        
-        std::string password = enArray[j]->getPassword();
+        userID = enArray[j]->getUserID();
+        password = enArray[j]->getPassword();
         Encrypter* example = new Encrypter(userID); 
         example->setPassword(password);
         example->encryptPassword();
-        password = example->getPassword();
+        encrypted = example->getPassword();
         int hashKey = 0;
-         hashKey = enArray[j]->getSumOfUserID() % 90000;
+         hashKey = enArray[j]->getSumOfUserID() % size;
 
         if(hashTable[hashKey] != nullptr)
         {
-            std::cout << userID << password << "\n";
-            example = hashTable[hashKey]->search(userID,password);
+           // std::cout << userID << password << "\n";
+            example = hashTable[hashKey]->search(userID,encrypted);
             //std::cout << example->getUserID();
            /* 
             while(!hashTable[hashKey]->isEmpty())
@@ -136,7 +140,49 @@ int main()
             std::cout << "Not Found\n";
         }
 
-        if(example != nullptr) std::cout << "found";
+        if(example != nullptr) std::cout << userID << "   " << password << "   " << "match" << std::endl;
+      
+        j++;
+    }
+
+    std::cout << "\n";
+    std::cout << "Illegal:" << std::endl;
+    std::cout << "Userid    Password    Result" << std::endl;
+    j=0;
+    while(j < testing)
+    {
+        userID = enArray[j]->getUserID();
+        password = enArray[j]->getPassword();
+        Encrypter* example = new Encrypter(userID); 
+        example->setPassword(password);
+        example->encryptPassword();
+        encrypted = example->getPassword();
+
+        password.at(0) = 'x';
+       //std::cout << password << "\n";
+        int hashKey = 0;
+         hashKey = enArray[j]->getSumOfUserID() % size;
+
+        if(hashTable[hashKey] != nullptr)
+        {
+           // std::cout << userID << password << "\n";
+            example = hashTable[hashKey]->search(userID,encrypted);
+            //std::cout << example->getUserID();
+           /* 
+            while(!hashTable[hashKey]->isEmpty())
+            {
+                example = hashTable[hashKey]->pop();
+              //  if(example ==)
+            }*/
+         
+        }
+        else
+        {
+            std::cout << "Not Found\n";
+        }
+        
+        if(example != nullptr) std::cout << userID << "   " << password << "   " << "match" << std::endl;
+        else std::cout << userID << "   " << password << "   " << "no match" << std::endl;
       
         j++;
     }
