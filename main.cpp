@@ -6,8 +6,14 @@
 #include "fileMakerAndReader.hpp"
 #include "Node.hpp"
 /*
-    Banner: Austyn Washington 1/28/2020
-
+************************************************************************************************
+Austyn Washington 2/2/20: The Main has been revised and reworked to operate with the reworkings of
+FileMakerAndReader class. The main creates 2 dynamic arrays, one for the objects passing through by 
+reference stated in FileMakerAndReader and the second is the actual hash table. The hash key is based 
+off the ascii values sum of the UserID’s mod table size. The objects are placed into the table. After that 
+portion searches through the first file contents in raw.txt and tried to find them in the table and stack 
+through the search functionality implemented in Stack class based on UserID and Password.
+************************************************************************************************
 */
 int main()
 {
@@ -25,9 +31,9 @@ int main()
     }
 
     creator.objectMaker2("lastNames.txt", enArray);
+    creator.textMaker2("raw.txt", enArray);
     creator.objectMaker2("raw.txt", enArray);
     creator.textMaker2("encrypted.txt", enArray);
-    creator.objectMaker2("encrypted.txt", enArray);
     
     
     int collisions = 0;

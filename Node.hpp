@@ -4,6 +4,13 @@
 #include "Encrypter.hpp"
 #include <iostream>
 
+
+/*
+************************************************************************************************
+Node Banter: 
+Austyn Washington 2/2/20: Simply creates node usage for the Stack usage 
+************************************************************************************************
+*/
 class Node
 {
     private:

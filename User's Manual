@@ -1,0 +1,10 @@
+Austyn Washington 2/2/20 Project 1
+
+User’s Manual:
+Once in the Linux Server, run make clean main, then ./main. The project will read the contents of lastNames.txt
+and place them in an array of reference then the data is taken and placed into Raw.txt, then the data of Raw.txt 
+is read then encrypted and placed the data into Encrypted.txt. The data is read in Main and placed into the hash 
+table. What will print to screen is the first five contents tested from the Encrypted.txt to see if found, if they aren’t, 
+then what will print is not found. After that dummy passwords are placed and tested to find and search the objects with 
+the same UserID’s in the file of Encrypted.txt. Will return results not found and follow the functionality stated
+earlier. 
